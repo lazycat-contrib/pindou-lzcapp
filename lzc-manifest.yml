@@ -1,0 +1,48 @@
+name: Pindou
+package: community.lazycat.app.pindou
+version: 0.5.3
+min_os_version: 1.3.8
+description: "Pindou application"
+license: MIT
+author: czyt
+
+application:
+  subdomain: pindou
+  oidc_redirect_path: /api/auth/oidc/callback
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://pindou:8080/
+
+services:
+  pindou:
+    # czyt/pindou:v0.5.3
+    image: registry.lazycat.cloud/czyt/czyt/pindou:d5ca8fdc80df3830
+    environment:
+      - PORT=8080
+      - DATABASE_PATH=/app/data/pindou.db
+      - SESSION_SECRET={{ stable_secret "session_secret" }}
+
+      - PINDOU_OIDC_CLIENT_ID=${LAZYCAT_AUTH_OIDC_CLIENT_ID}
+      - PINDOU_OIDC_CLIENT_SECRET=${LAZYCAT_AUTH_OIDC_CLIENT_SECRET}
+      - PINDOU_OIDC_AUTH_URI=${LAZYCAT_AUTH_OIDC_AUTH_URI}
+      - PINDOU_OIDC_TOKEN_URI=${LAZYCAT_AUTH_OIDC_TOKEN_URI}
+      - PINDOU_OIDC_USERINFO_URI=${LAZYCAT_AUTH_OIDC_USERINFO_URI}
+      - PINDOU_APP_URL=https://${LAZYCAT_APP_DOMAIN}
+      - PINDOU_OIDC_CALLBACK_PATH=/api/auth/oidc/callback
+
+    binds:
+      - /lzcapp/var/pindou:/app/data
+
+unsupported_platforms:
+  - ios
+  - android
+
+locales:
+  zh:
+    name: "拼豆"
+    description: "拼豆图案生成工具,将图片转换为拼豆图案，支持多种颜色和尺寸。"
+  en:
+    name: "Pindou"
+    description: "Pindou pattern generator,converts images to Pindou patterns, supporting multiple colors and sizes."
