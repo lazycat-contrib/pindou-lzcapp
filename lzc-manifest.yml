@@ -1,6 +1,6 @@
 name: Pindou
 package: community.lazycat.app.pindou
-version: 0.5.6
+version: 0.5.7
 min_os_version: 1.3.8
 description: "Pindou application"
 license: MIT
@@ -17,8 +17,8 @@ application:
 
 services:
   pindou:
-    # czyt/pindou:v0.5.6
-    image: registry.lazycat.cloud/czyt/czyt/pindou:a61f434501e663c5
+    # czyt/pindou:v0.5.7
+    image: registry.lazycat.cloud/czyt/czyt/pindou:3e56270235b8b9a9
     user: root
     environment:
       - PORT=8080
