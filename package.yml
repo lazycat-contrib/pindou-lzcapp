@@ -1,0 +1,16 @@
+package: community.lazycat.app.pindou
+version: 0.5.8
+name: Pindou
+description: "拼豆图案生成工具，将图片转换为拼豆图案，支持多种颜色和尺寸。"
+min_os_version: "1.5.0"
+author: czyt
+unsupported_platforms:
+  - ios
+  - android
+locales:
+  zh:
+    name: 拼豆
+    description: "拼豆图案生成工具，将图片转换为拼豆图案，支持多种颜色和尺寸。"
+  en:
+    name: Pindou
+    description: "Pindou pattern generator that converts images into perler-bead patterns, supporting multiple colors and sizes."

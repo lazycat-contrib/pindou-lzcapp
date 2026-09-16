@@ -1,0 +1,40 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/pindou.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: pindou
+
+build:
+  run_buildscript: false
+
+images:
+  # 主应用：上游 czyt/pindou 有完整三段 SemVer tag 家族（0.5.0~v0.5.8），排除 latest 等别名
+  - id: pindou
+    target: service
+    service: pindou
+    source: czyt/pindou
+    channel: stable
+    sort: semver
+    tag_regex: '^v?\d+\.\d+\.\d+$'
+    delivery:
+      mode: mirror
+
+stores:
+  official:
+    # Official store publication is intentionally disabled; publish only to Miaomiao Store.
+    enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Pindou
+    summary: "拼豆图案生成工具，将图片转换为拼豆图案，支持多种颜色和尺寸。"
