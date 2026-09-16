@@ -6,11 +6,10 @@ application:
   upstreams:
     - location: /
       backend: http://pindou:8080/
-
 services:
   pindou:
-    # upstream: czyt/pindou:0.5.8
-    image: docker.1ms.run/czyt/pindou:0.5.8
+    # upstream: czyt/pindou:v0.5.8
+    image: docker.1ms.run/czyt/pindou:v0.5.8
     user: root
     environment:
       - PORT=8080
